@@ -1,3 +1,10 @@
 # For Node Modules Packages
 node_modules
 
+# For yarn error log
+yarn-error
+
+# For unused Files
+Grid
+List
+DeleteBtn

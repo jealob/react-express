@@ -8,6 +8,15 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+// Render
+app.get("/api/sharks", function (req, res) {
+  console.log('hit /api/sharks');
+  res.json([
+    { type: "hello world"}
+  ]);
+  res.end();
+});
+
 // Send every request to the React app
 // Define any API routes before this runs
 app.get("*", function(req, res) {
