@@ -8,3 +8,6 @@ yarn-error
 Grid
 List
 DeleteBtn
+
+#Dot environment vairiables
+.env
