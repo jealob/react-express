@@ -1,6 +1,6 @@
-require("dotenv").config();
-const express = require("express");
-const bodyParser = require("body-parser");
+require("../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/dotenv").config();
+const express = require("../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/express");
+const bodyParser = require("../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();

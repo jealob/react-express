@@ -1,6 +1,6 @@
 const db = require("../models");
-const request = require("request");
-const apikey = process.env.NYTIMES_API;
+const request = require("../../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/request");
+// const apikey = process.env.NYTIMES_API;
 
 // Defining methods for the articlesController
 
@@ -38,18 +38,26 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   search: function (req, res) {
+    const searchString = req.params;
+    if (searchString.begin === 'null') {
+      searchString.begin = "19000101";
+    }
+    if (searchString.end === 'null') {
+      searchString.end = "20180101";
+    }
+    console.log("params:", searchString);
     request.get({
       url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
       qs: {
         'api-key': "26a92129d8584084af3e204eb688ec82",
-        'q': "Obama administration",
-        'begin_date': "20080101",
-        'end_date': "20180101"
+        'q': searchString.query,
+        'begin_date': searchString.begin,
+        'end_date': searchString.end
       },
     }, function (err, response, body) {
-      console.log("apikey:", apikey);
+      // console.log("apikey:", apikey);
       body = JSON.parse(body);
-      res.json(body);
+      res.json(body.response.docs);
     })
   }
 };
