@@ -5,9 +5,9 @@ export default {
     getArticles: function () {
         return axios.get("/api/articles");
     },
-    // Gets the book with the given id
+    // Gets all articles
     Search: function (searchQuery) {
-        console.log(searchQuery);
+
         if (!searchQuery.beginDate) {
             searchQuery.beginDate = null;
         }
@@ -17,7 +17,7 @@ export default {
         return axios.get(`/api/articles/${searchQuery.query}/${searchQuery.beginDate}/${searchQuery.endDate}`);
     },
     // Deletes the book with the given id
-    deleteBook: function (id) {
+    deleteArticle: function (id) {
         return axios.delete("/api/articles/" + id);
     },
     // Saves an article to the database

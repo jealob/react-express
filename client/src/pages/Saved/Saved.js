@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
-import { List, ListItem } from "../../components/List";
+import { List, SavedItem } from "../../components/List";
 import Jumbotron from "../../components/Jumbotron";
 import DeleteBtn from "../../components/DeleteBtn";
 
@@ -44,7 +44,7 @@ class Saved extends Component {
                                 <div>
                                     {this.state.savedArticles.map((article) =>
                                         <div className=" py-2">
-                                            <ListItem
+                                            <SavedItem
                                                 key={article._id}
                                                 url={article.url}
                                                 headline={article.headline}
@@ -52,7 +52,7 @@ class Saved extends Component {
                                                 date={article.date}
                                                 type="btn btn-danger mx-2">
                                                 <DeleteBtn onClick={() => this.handleDeleteArticle(article._id)}/>
-                                            </ListItem>
+                                            </SavedItem>
                                         </div>
                                 )
                                 }

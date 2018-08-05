@@ -1,5 +1,5 @@
 const db = require("../models");
-const request = require("request");
+const request = require("../../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/request");
 // const apikey = process.env.NYTIMES_API;
 
 // Defining methods for the articlesController
@@ -32,6 +32,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function (req, res) {
+    console.log(req.params)
     db.Article
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
