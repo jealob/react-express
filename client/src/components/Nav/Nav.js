@@ -1,17 +1,10 @@
 import React from "react";
+import "./Nav.css"
 
 export const Nav = () => (
-  <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <a className="navbar-brand" href="/">NTY Scrubber</a>
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
-  </button>
-  <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-    <div className="navbar-nav">
-      <a className="nav-item nav-link active" href="/">Home <span className="sr-only">(current)</span></a>
-      <a className="nav-item nav-link" href="/saved">Saved</a>
-    </div>
-  </div>
+  <nav className="navbar navbar-light bg-light">
+  <a className="navbar-brand"href="/">NYT Scrubber</a>
+  <a className="navbar-brand"href="/saved">Saved</a>
 </nav>
 );
 
@@ -19,7 +12,7 @@ export const Footer = () => {
   return (
       <footer className="footer">
           <div className="bottom">
-              &copy; NYT Article Scrubber - Powered by React
+              &copy; NYTimes Article Scrubber - Powered by React
       </div>
       </footer >
   )

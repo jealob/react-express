@@ -8,7 +8,7 @@ import "./Home.css";
 
 class Search extends Component {
     state = {
-        articles: [],
+        searchedArticles: [],
         query: "",
         beginDate: "",
         endDate: ""
@@ -26,7 +26,6 @@ class Search extends Component {
 
     handleSearch = event => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
-
         event.preventDefault();
         console.log(true)
         if (this.state.query) {
@@ -47,7 +46,7 @@ class Search extends Component {
                     });
                     console.log(temp)
                     this.setState({
-                        articles: temp,
+                        searchedArticles: temp,
                         query: "",
                         beginDate: "",
                         endDate: ""
@@ -57,8 +56,9 @@ class Search extends Component {
         }
     };
 
-    saveArticle = id => {
-        API.saveArticle(this.state.articles[id])
+    handleSaveArticle = id => {
+        console.log(this.state.searchedArticles[id])
+        API.saveArticle(this.state.searchedArticles[id])
             .then(res => console.log(res))
             .catch(err => console.log(err));
     };
@@ -66,36 +66,45 @@ class Search extends Component {
     render() {
         return (
             <div>
-                <div className="container text-center">
-                    <Jumbotron header="New York Times Article Scrubber">Search for annotate articles of interest</Jumbotron>
-                    <form>
-                        <Input
-                            value={this.state.query}
-                            onChange={this.handleInputChange}
-                            name="query"
-                            placeholder="Search String (required)" />
-                        <Input
-                            value={this.state.beginDate}
-                            onChange={this.handleInputChange}
-                            name="beginDate"
-                            type="date" />
-                        <Input
-                            value={this.state.endDate}
-                            onChange={this.handleInputChange}
-                            name="endDate"
-                            type="date" />
-                        <FormBtn className="text-center" onClick={this.handleSearch}>Search</FormBtn>
-                    </form>
+                <div className="container text-center ">
+                    <Jumbotron header="New York Times Article Scrubber">Search for and annotate articles of interest</Jumbotron>
+                    <div className="card ">
+                        <div className="card-header text-center">
+                            Search
+                        </div>
+                        <form className="my-2">
+                            <h5><strong>Topic</strong></h5>
+                            <Input
+                                value={this.state.query}
+                                onChange={this.handleInputChange}
+                                name="query"
+                                placeholder="Search String (required)" />
+                            <h4><strong>Start Date</strong></h4>
+                            <Input
+                                value={this.state.beginDate}
+                                onChange={this.handleInputChange}
+                                name="beginDate"
+                                type="date" />
+                            <h4><strong>End Date</strong></h4>
+                            <Input
+                                value={this.state.endDate}
+                                onChange={this.handleInputChange}
+                                name="endDate"
+                                type="date" />
+                            <FormBtn className="text-center" onClick={this.handleSearch}>Search</FormBtn>
+                        </form>
+                    </div>
+
                 </div>
-                <div className="container py-2">
+                <div className="container py-4">
                     <List>
                         <div className="card">
                             <div className="card-header text-center">
                                 Results
                                 </div>
-                            <div>{this.state.articles.length ? (
+                            <div className="my-2">{this.state.searchedArticles.length ? (
                                 <div>
-                                    {this.state.articles.map((article) =>
+                                    {this.state.searchedArticles.map((article) =>
                                         <div className=" py-2">
                                             <ListItem
                                                 key={article.id}
@@ -103,7 +112,8 @@ class Search extends Component {
                                                 url={article.url}
                                                 headline={article.headline}
                                                 snippet={article.snippet}
-                                                saveArticle={this.saveArticle}
+                                                type="btn btn-success mx-2"
+                                                operate={this.handleSaveArticle}
                                             >
                                                 Save</ListItem>
                                         </div>
@@ -115,6 +125,7 @@ class Search extends Component {
                         </div>
                     </List>
                 </div>
+
             </div>
         )
     }
