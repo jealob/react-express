@@ -1,5 +1,5 @@
 const db = require("../models");
-const request = require("../../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/request");
+const request = require("request");
 // const apikey = process.env.NYTIMES_API;
 
 // Defining methods for the articlesController
@@ -19,6 +19,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function (req, res) {
+    console.log("back: ", req.body);
     db.Article
       .create(req.body)
       .then(dbModel => res.json(dbModel))

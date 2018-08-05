@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     // Gets all articles
-    getarticles: function () {
+    getArticles: function () {
         return axios.get("/api/articles");
     },
     // Gets the book with the given id
@@ -21,7 +21,8 @@ export default {
         return axios.delete("/api/articles/" + id);
     },
     // Saves an article to the database
-    saveArticle: function (bookData) {
-        return axios.post("/api/articles", bookData);
+    saveArticle: function (articleData) {
+        console.log(articleData);
+        return axios.post("/api/articles", articleData);
     }
 };

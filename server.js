@@ -1,6 +1,6 @@
-require("../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/dotenv").config();
-const express = require("../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/express");
-const bodyParser = require("../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/body-parser");
+require("dotenv").config();
+const express = require("express");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -19,7 +19,7 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nytreactB");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nytreact");
 
 // // Render
 // app.get("/api/sharks", function (req, res) {

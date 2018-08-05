@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Input, FormBtn } from "../../components/Form";
-import { List, ListItem, ArticleBtn } from "../../components/List";
+import { List, ListItem } from "../../components/List";
 import Jumbotron from "../../components/Jumbotron";
 import "./Home.css";
 
@@ -26,6 +26,7 @@ class Search extends Component {
 
     handleSearch = event => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
+
         event.preventDefault();
         console.log(true)
         if (this.state.query) {
@@ -34,28 +35,39 @@ class Search extends Component {
                 beginDate: this.state.beginDate,
                 endDate: this.state.endDate
             })
-                .then(res => this.setState({ articles: res.data }))
+                .then(res => {
+                    let temp = [];
+                    temp = res.data.map((article, i) => {
+                        return {
+                            id: i,
+                            headline: article.headline.main,
+                            url: article.web_url,
+                            snippet: article.snippet
+                        }
+                    });
+                    console.log(temp)
+                    this.setState({
+                        articles: temp,
+                        query: "",
+                        beginDate: "",
+                        endDate: ""
+                    });
+                })
                 .catch(err => console.log(err));
         }
-        this.setState({
-            query: "",
-            beginDate: "",
-            endDate: ""
-        });
     };
 
-    saveArticle = event => {
-        event.preventDefault();
-        console.log("click")
-        // API.saveArticle({
-
-        // })
+    saveArticle = id => {
+        API.saveArticle(this.state.articles[id])
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
     };
+
     render() {
         return (
             <div>
                 <div className="container text-center">
-                    <Jumbotron header="New York Times Article Scrubber">Search for and annotate articles of interest!</Jumbotron>
+                    <Jumbotron header="New York Times Article Scrubber">Search for annotate articles of interest</Jumbotron>
                     <form>
                         <Input
                             value={this.state.query}
@@ -77,22 +89,29 @@ class Search extends Component {
                 </div>
                 <div className="container py-2">
                     <List>
-                        <h2 className="text-center results">Results </h2>
-                        <div>{this.state.articles.length ? (
-                            <div>
-                                {this.state.articles.map(article =>
-                                    <div className="py-2">
-                                        <ListItem
-                                            key={article.web_url}
-                                            url={article.web_url}
-                                            headline={article.headline.main}
-                                        />
-                                        <ArticleBtn onClick={() => this.saveArticle}>Save</ArticleBtn>
-                                    </div>
-                                )
-                                }
+                        <div className="card">
+                            <div className="card-header text-center">
+                                Results
+                                </div>
+                            <div>{this.state.articles.length ? (
+                                <div>
+                                    {this.state.articles.map((article) =>
+                                        <div className=" py-2">
+                                            <ListItem
+                                                key={article.id}
+                                                id={article.id}
+                                                url={article.url}
+                                                headline={article.headline}
+                                                snippet={article.snippet}
+                                                saveArticle={this.saveArticle}
+                                            >
+                                                Save</ListItem>
+                                        </div>
+                                    )
+                                    }
+                                </div>
+                            ) : (<h5 className="text-center">No Search Match to display</h5>)}
                             </div>
-                        ) : (<h5 className="text-center">No Search Match to display</h5>)}
                         </div>
                     </List>
                 </div>
@@ -100,5 +119,4 @@ class Search extends Component {
         )
     }
 }
-
 export default Search;
