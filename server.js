@@ -1,6 +1,6 @@
-require("../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/dotenv").config();
-const express = require("../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/express");
-const bodyParser = require("../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/body-parser");
+require("dotenv").config();
+const express = require("express");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
@@ -20,21 +20,6 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/nytreact");
-
-// // Render
-// app.get("/api/sharks", function (req, res) {
-//   console.log('hit /api/sharks');
-//   res.json([
-//     { type: "hello world" }
-//   ]);
-//   res.end();
-// });
-
-// // Send every request to the React app
-// // Define any API routes before this runs
-// app.get("*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> Server now on port ${PORT}!`);

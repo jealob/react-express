@@ -5,7 +5,7 @@ const articleSchema = new Schema({
   headline: { type: String, required: true },
   url: String,
   snippet: String,
-  date: { type: Date, default: ISODate(Date.now) }
+  date: { type: Date, default:Date.now }
 });
 console.log("db");
 const Article = mongoose.model("Article", articleSchema);

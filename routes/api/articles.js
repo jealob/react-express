@@ -1,4 +1,4 @@
-const router = require("../../../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/express").Router();
+const router = require("express").Router();
 const articlesController = require("../../controllers/articlesController");
 
 // Matches with "/api/articles"
@@ -11,7 +11,7 @@ router.route("/")
 .post(articlesController.create);
 
 
-// Matches with "/api/books/:id"
+// Matches with "/api/articles/:id"
 router
   .route("/:id")
   .get(articlesController.findById)

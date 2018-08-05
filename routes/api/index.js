@@ -1,4 +1,4 @@
-const router = require("../../../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/express").Router();
+const router = require("express").Router();
 const articleRoutes = require("./articles");
 
 // Articles routes
