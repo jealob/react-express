@@ -19,7 +19,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function (req, res) {
-    console.log("back: ", req.body);
     db.Article
       .create(req.body)
       .then(dbModel => res.json(dbModel))
@@ -32,9 +31,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   remove: function (req, res) {
-    console.log(req.params);
-    console.log(req.body);
-    console.log(req.query);
     db.Article
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())

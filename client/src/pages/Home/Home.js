@@ -27,7 +27,6 @@ class Search extends Component {
     handleSearch = event => {
         // Preventing the default behavior of the form submit (which is to refresh the page)
         event.preventDefault();
-        console.log(true)
         if (this.state.query) {
             API.Search({
                 query: this.state.query,
@@ -44,7 +43,6 @@ class Search extends Component {
                             snippet: article.snippet
                         }
                     });
-                    console.log(temp)
                     this.setState({
                         searchedArticles: temp,
                         query: "",
@@ -57,7 +55,6 @@ class Search extends Component {
     };
 
     handleSaveArticle = id => {
-        console.log(this.state.searchedArticles[id])
         API.saveArticle(this.state.searchedArticles[id])
             .then(res => console.log(res))
             .catch(err => console.log(err));
