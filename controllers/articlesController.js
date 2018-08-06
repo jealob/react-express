@@ -45,7 +45,6 @@ module.exports = {
     if (searchString.end === 'null') {
       searchString.end = "20180101";
     }
-    console.log("params:", searchString);
     request.get({
       url: "https://api.nytimes.com/svc/search/v2/articlesearch.json",
       qs: {

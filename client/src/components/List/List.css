@@ -29,9 +29,23 @@
   border-bottom: none;
 }
 
+.article-snippet{
+  background: #000;
+  width:100%;
+  margin:0;
+}
+
+.snippet{
+  color: #ffffff;
+  display:inline-block;
+  margin: 0;
+  /* min-width:100% */
+}
+
 .article-link{
+  padding:0;
   border:none;
   width:auto;
   display:inline-block;
-  background:none
+  background:none;
 }

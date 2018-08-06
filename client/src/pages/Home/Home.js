@@ -56,7 +56,7 @@ class Search extends Component {
 
     handleSaveArticle = id => {
         API.saveArticle(this.state.searchedArticles[id])
-            .then(res => console.log(res))
+            .then(res => alert("Article Added "))
             .catch(err => console.log(err));
     };
 
@@ -102,18 +102,14 @@ class Search extends Component {
                             <div className="my-2">{this.state.searchedArticles.length ? (
                                 <div>
                                     {this.state.searchedArticles.map((article) =>
-                                        <div className=" py-2">
-                                            <ListItem
-                                                key={article.id}
-                                                id={article.id}
-                                                url={article.url}
-                                                headline={article.headline}
-                                                snippet={article.snippet}
-                                                type="btn btn-success mx-2"
-                                                operate={this.handleSaveArticle}
-                                            >
-                                                Save</ListItem>
-                                        </div>
+                                        <ListItem
+                                            key={article.id}
+                                            id={article.id}
+                                            url={article.url}
+                                            headline={article.headline}
+                                            snippet={article.snippet}
+                                            type="btn btn-success mx-2"
+                                            operate={this.handleSaveArticle} />
                                     )
                                     }
                                 </div>
