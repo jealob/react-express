@@ -56,7 +56,7 @@ class Search extends Component {
 
     handleSaveArticle = id => {
         API.saveArticle(this.state.searchedArticles[id])
-            .then(res => alert("Article Added "))
+            // .then(res => alert("Article Added "))
             .catch(err => console.log(err));
     };
 
@@ -118,7 +118,6 @@ class Search extends Component {
                         </div>
                     </List>
                 </div>
-
             </div>
         )
     }

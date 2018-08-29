@@ -25,7 +25,7 @@ class Saved extends Component {
         API.deleteArticle(id)
             .then(res => this.loadArticles())
             .catch(err => console.log(err));
-            alert("Article Deleted ");
+            // alert("Article Deleted ");
     };
 
     render() {
